@@ -7,8 +7,6 @@ const int button[] = {
 
 bool stateDO, stateRE, stateMI, stateFA, stateSOL, stateLA, stateSI;
 
-// using serial for on
-String name;
 
 int size = sizeof(button) / sizeof(button[0]);
 
@@ -27,12 +25,18 @@ int stateButton(int index) {
   
 }
 
-int tanggaNada[] = {
-// do   re   mi   fa   sol  la   si
-  494, 523, 587, 659, 698, 784, 880   
+float hijaiyah[] = {
+
+  //BT 312.0 290.0 320.7
+//BU     BA      BI  (FinalTone)
+ //295.8, 250.9, 188.7
+//HT 343.8 300.3 328.4
+//LT 236.3 192.7 188.7
+// BA  TA  TSA   JA  HA  KHO  DA
+  261.7, 303.2, 346.5, 272.8, 271.4, 260.7, 257.2
 };
 
-int sizeTnada = sizeof(tanggaNada) / sizeof(tanggaNada[0]);
+int sizeHuruf = sizeof(hijaiyah) / sizeof(hijaiyah[0]);
 
 int intervalNada = 1000;
 
@@ -41,31 +45,31 @@ int nadaBuzzer(int frekuensi) {
 
   switch (frek) {
     case 0:  
-      tone(buzzer, tanggaNada[frek], intervalNada);
+      tone(buzzer, hijaiyah[frek], intervalNada);
     break;
 
     case 1:
-      tone(buzzer, tanggaNada[frek], intervalNada);
+      tone(buzzer, hijaiyah[frek], intervalNada);
     break;
 
     case 2:
-      tone(buzzer, tanggaNada[frek], intervalNada);
+      tone(buzzer, hijaiyah[frek], intervalNada);
     break;
 
     case 3:
-      tone(buzzer, tanggaNada[frek], intervalNada);
+      tone(buzzer, hijaiyah[frek], intervalNada);
     break;
 
     case 4:
-      tone(buzzer, tanggaNada[frek], intervalNada);
+      tone(buzzer, hijaiyah[frek], intervalNada);
     break;
 
     case 5:
-      tone(buzzer, tanggaNada[frek], intervalNada);
+      tone(buzzer, hijaiyah[frek], intervalNada);
     break;
 
     case 6:
-      tone(buzzer, tanggaNada[frek], intervalNada);
+      tone(buzzer, hijaiyah[frek], intervalNada);
     break;
 
     default:
@@ -86,13 +90,13 @@ void setup() {
 
 void loop() {
   
-  stateDO = digitalRead(button[0]);
-  stateRE = digitalRead(button[1]);
-  stateMI = digitalRead(button[2]);
-  stateFA = digitalRead(button[3]);
-  stateSOL = digitalRead(button[4]);
-  stateLA = digitalRead(button[5]);
-  stateSI = digitalRead(button[6]);
+  stateDO = stateButton(0);
+  stateRE = stateButton(1);
+  stateMI = stateButton(2);
+  stateFA = stateButton(3);
+  stateSOL = stateButton(4);
+  stateLA = stateButton(5);
+  stateSI = stateButton(6);
 
   if (stateDO == HIGH) {
     nadaBuzzer(0);
